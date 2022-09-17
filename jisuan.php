@@ -17,7 +17,7 @@
 	$jieguobaifenshu = $jieguo2 * 100;
 	echo $jieguobaifenshu.'%';
 	echo '<br>';
-	echo '本次医保为您支付：'.$jieguo3.'元';
+	echo '本次医保统筹支付：'.$jieguo3.'元';
 	?>
 </center></br></h2>
 </body>
