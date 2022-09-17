@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>医保支付比例为：</title>
 </head>
 <body>
 <h1>感谢您的提交，您的医保支付比例为：</h1>
 <center><br><h2>
     <?php
-	$heji = $_POST["hejijine"];
-	$gerenpayzong = $_POST["gerenpay"] + $_POST["gerenpay2"];
-	$jieguo3 = $heji - $gerenpayzong;
-	$jieguo2 = $jieguo3 / $heji;
-	$jieguobaifenshu = $jieguo2 * 100;
-	if($jieguobaifenshu > 100){
+	$totalamount = $_POST["totalamount"];//定义变量
+	$sumofindividualpayments = $_POST["personalaccountpayment"] + $_POST["individualpayment"];//个人支付总和
+	$medicalinsuranceco_payment = $totalamount - $sumofindividualpayments;//医保统筹支付
+	$payoutratio = $medicalinsuranceco_payment / $totalamount;//计算医保支付比例
+	$percentage = $payoutratio * 100;//结果×100
+    /*
+    数据合法性验证
+    */
+	if($percentage > 100){
 		echo'数据不合法';
-	}elseif($jieguobaifenshu < 0){
+	}elseif($percentage < 0){
 		echo'数据不合法';
 	}else{
-	echo $jieguobaifenshu.'%';
+	echo $percentage.'%';
 	echo '<br>';
-	echo '本次医保统筹支付：'.$jieguo3.'元';
+	echo '本次医保统筹支付：'.$medicalinsuranceco_payment.'元';
 	}
 	?>
 </center></br></h2>
